@@ -2,17 +2,20 @@
 title: 在 VS Code 中调试
 ---
 
-本指南将指导您设置 VS 代码，以调试 [Tauri 应用的核心流程](https://tauri.app/v1/reference/architecture/process-model#the-core-process)。
+{/* TODO: REVISE COPY TO V2 */}
+{/* TODO: Revise this change: Debugging in VS Code > Debug in VS Code */}
 
-## 所有具有 vscode-lldb 扩展的平台
+本指南将指导您设置 VS 代码，以调试 [Tauri 应用的核心流程].
 
-### 先决条件
+## 全平台使用 vscode-lldb 扩展
+
+## 先决条件
 
 安装 [`vscode-lldb`] 扩展。
 
 [`vscode-lldb`]: https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb
 
-### 配置 launch.json
+## 配置 launch.json
 
 创建一个 `.vscode/launch.json` 文件，并将下面的 JSON 内容粘贴到其中：
 
@@ -85,15 +88,14 @@ title: 在 VS Code 中调试
 
 现在，你可以在 `src-tauri/src/main.rs` 或任何其他 Rust 文件中设置断点，并按下 `F5` 开始调试。
 
-## 在 Windows 上使用 Visual Studio Windows 调试器
+## 在Windows使用Visual Studio 窗口调试器
 
-Visual Studio Windows Debugger 是一个仅适用于 Windows 的调试器，通常比 [`vscode-lldb`] 更快，并且对一些 Rust 特性（如枚举）提供更好的支持。
-
+Visual Studio窗口调试器是一个只能在Windows中使用的调试器,它比[`vscode-lldb`]更快,以及更好的支持一些Rust特性,比如枚举。
 ### 先决条件
 
-安装 [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) 扩展，并按照 https://code.visualstudio.com/docs/cpp/config-msvc#_prerequisites 中的步骤安装 Visual Studio Windows 调试器。
+安装[C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) 扩展, 按照 https://code.visualstudio.com/docs/cpp/config-msvc#_prerequisites 安装 Visual Studio Windows Debugger.
 
-### 配置 launch.json 和 tasks.json
+### 配置 launch.json and tasks.json
 
 ```json title=".vscode/launch.json"
 {
@@ -116,10 +118,9 @@ Visual Studio Windows Debugger 是一个仅适用于 Windows 的调试器，通�
 }
 ```
 
-请注意，它不使用 Tauri CLI，因此独占的 CLI 功能不会被执行。`tasks.json` 与 `lldb` 相同，只是如果您希望在启动之前始终进行编译，则需要添加一个配置组，并将其 `launch.json` 中的 `preLaunchTask` 指向它。
+注意它没有使用Tauri CLI,所以特有的CLI 特性没有执行。`tasks.json`和`lldb`一样,希望你添加一组配置,如果你想要在启动前进行编译,把`launch.json`的 `preLaunchTask`指向它。
 
-这是一个运行开发服务器（相当于 `beforeDevCommand`）和编译（`cargo build`）作为一组的示例，要使用它，请将 `launch.json` 中的 `preLaunchTask` 配置更改为 `dev`（或任何你命名的组）。
-
+这里是一个示例：运行开发服务器(相当于`beforeDevCommand`),作为一个组进行汇编(`cargo build`),把`launch.json`中的`preLaunchTask` 配置改成`dev`(或者是你给配置的命名)。
 ```json title=".vscode/tasks.json"
 {
   // See https://go.microsoft.com/fwlink/?LinkId=733558
@@ -152,3 +153,4 @@ Visual Studio Windows Debugger 是一个仅适用于 Windows 的调试器，通�
   ]
 }
 ```
+
